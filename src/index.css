@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+html, body {
+  scroll-behavior: smooth;
+  background-color: #0f172a; /* dark navy */
+  color: white;
+}
+/* Hide scrollbar for slider */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
