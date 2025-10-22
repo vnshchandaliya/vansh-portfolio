@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/vansh-portfolio/', 
+   base: '/vansh-portfolio/', 
   server: {
     
     port: 2000, 
