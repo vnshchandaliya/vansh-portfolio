@@ -9,7 +9,7 @@ import {
   FaJsSquare,
   FaDatabase,
 } from "react-icons/fa";
-import { SiVite, SiTailwindcss, SiCanva } from "react-icons/si";
+import { SiVite, SiTailwindcss, SiCanva, SiNodedotjs, SiMongodb } from "react-icons/si";
 
 const skillsLeft = [
   { title: "React", percent: 90 },
@@ -61,13 +61,13 @@ const Skills = () => {
               whileHover={{ scale: 1.1 }}
               className="w-20 h-20 rounded-full border border-cyan-500 flex items-center justify-center bg-[#0f172a]"
             >
-              <SiVite className="text-4xl text-yellow-400" />
+              <SiNodedotjs className="text-4xl text-yellow-400" />
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="w-20 h-20 rounded-full border border-cyan-500 flex items-center justify-center bg-[#0f172a]"
             >
-              <SiTailwindcss className="text-4xl text-sky-400" />
+              <SiMongodb className="text-4xl text-sky-400" />
             </motion.div>
           </div>
         </div>

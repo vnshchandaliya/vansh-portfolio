@@ -5,6 +5,7 @@ import Skills from "./components/Skills";
 import Service from "./components/ServiceSection";
 import Projects from "./components/Testimonials";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 
 
@@ -19,7 +20,7 @@ function App() {
      <Service />
      <Projects />
      <Contact />
-
+<Footer />
     </div>
      
   );

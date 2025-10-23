@@ -6,7 +6,7 @@ import {
   FaBehance,
   FaDribbble,
 } from "react-icons/fa";
-// import aboutImg from "../assets/vansh-img/vnshimg-2.jpg"; // 🖼️ Replace with your image
+import aboutImg from "../assets/vansh-img/IMG_2448.jpg"; // 🖼️ Replace with your image
 
 const About = () => {
   return (
@@ -18,11 +18,11 @@ const About = () => {
         {/* ==== Left Image Section ==== */}
         <div className="relative flex flex-col items-center md:w-1/2">
           <div className="bg-slate-700 rounded-2xl overflow-hidden shadow-md w-64 h-64 md:w-80 md:h-80">
-            {/* <img
+            <img
               src={aboutImg}
               alt="Vansh Chandaliya"
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
 
           {/* Social Icons */}
@@ -33,30 +33,30 @@ const About = () => {
             >
               <FaFacebookF />
             </a>
-            <a
+            {/* <a
               href="#"
               className="text-cyan-400 hover:text-cyan-300 text-xl transition-all duration-300"
             >
               <FaDribbble />
-            </a>
+            </a> */}
             <a
-              href="#"
+              href="https://www.instagram.com/vanshweb/"
               className="text-cyan-400 hover:text-cyan-300 text-xl transition-all duration-300"
             >
               <FaInstagram />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/programing-hub-3a5952270/"
               className="text-cyan-400 hover:text-cyan-300 text-xl transition-all duration-300"
             >
               <FaLinkedinIn />
             </a>
-            <a
+            {/* <a
               href="#"
               className="text-cyan-400 hover:text-cyan-300 text-xl transition-all duration-300"
             >
               <FaBehance />
-            </a>
+            </a> */}
           </div>
         </div>
 
@@ -88,7 +88,7 @@ const About = () => {
             >
               My Projects
             </a>
-            <a
+            {/* <a
               href="/cv.pdf"
               download
               className="flex items-center justify-center gap-2 border border-cyan-400 hover:bg-cyan-500 hover:text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
@@ -108,7 +108,7 @@ const About = () => {
                 />
               </svg>
               Download CV
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

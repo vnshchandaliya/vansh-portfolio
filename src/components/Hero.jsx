@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-// import heroImg from "../assets/vansh-img/vnshImg.jpeg"; // 🖼️ replace with your image name
+import heroImg from "../assets/vansh-img/WhatsApp Image 2025-10-23 at 2.42.56 AM.jpeg"; // 🖼️ replace with your image name
 
 const Hero = () => {
   return (
@@ -50,12 +50,12 @@ const Hero = () => {
         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
 
         {/* Profile Image */}
-        <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-cyan-500 shadow-2xl">
-          {/* <img
+        <div className="relative w-64 h-64 md:w-90 md:h-90 rounded-full overflow-hidden border-4 border-cyan-500 shadow-2xl">
+          <img
             src={heroImg}
             alt="Vansh Chandaliya"
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-          /> */}
+          />
         </div>
       </motion.div>
     </section>

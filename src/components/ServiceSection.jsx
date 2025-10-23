@@ -62,7 +62,7 @@ const brands = [
 
 const Service = () => {
   return (
-    <section className="py-20  text-gray-800 overflow-hidden">
+    <section id="service" className="py-20  text-gray-800 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-14">
