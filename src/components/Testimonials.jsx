@@ -1,75 +1,9 @@
 
-import React, { useMemo, useState } from "react";
-import {
-  FaArrowUpRightFromSquare,
-  FaInfinity,
-} from "react-icons/fa6";
-// import ProjectOne from "../assets/projectImg/project1.png";
-// import ProjectTwo from "../assets/projectImg/project2.png";
-// import ProjectThree from "../assets/projectImg/project3.png";
-// import ProjectFour from "../assets/projectImg/project4.png";
-// import ProjectFive from "../assets/projectImg/project5.png";
-// import ProjectSix from "../assets/projectImg/project6.png";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { FaArrowUpRightFromSquare, FaInfinity } from "react-icons/fa6";
 import "./Projects.css";
 
-// const projects = [
-//   {
-//     id: 1,
-//     title: "Tour & Travel",
-//     subtitle: "Travel experiences, thoughtfully designed.",
-//     image: "/projectImg/pro5.png",
-//     tags: ["React", "Tailwind", "Node.js"],
-//     categories: ["Websites", "Landing Pages"],
-//     link: "https://vcteam.in/",
-//   },
-//   // {
-//   //   id: 2,
-//   //   title: "Web Design Company",
-//   //   subtitle: "A modern digital presence for a creative agency.",
-//   //   image: ProjectTwo,
-//   //   tags: ["React", "Tailwind", "MongoDB"],
-//   //   categories: ["Websites", "Landing Pages"],
-//   //   link: "https://digifyamerica.com/",
-//   // },
-//   // {
-//   //   id: 3,
-//   //   title: "Property Rentals",
-//   //   subtitle: "A seamless experience for discovering stays.",
-//   //   image: ProjectThree,
-//   //   tags: ["HTML", "CSS", "JavaScript", "PHP"],
-//   //   categories: ["Websites", "Landing Pages"],
-//   //   link: "https://www.coastaldreamrentals.com/",
-//   // },
-//   // {
-//   //   id: 4,
-//   //   title: "Jyot Foundation",
-//   //   subtitle: "A digital platform for a meaningful mission.",
-//   //   image: ProjectFour,
-//   //   tags: ["WordPress"],
-//   //   categories: ["Websites"],
-//   //   link: "https://jyotfoundation.in/",
-//   // },
-//   // {
-//   //   id: 5,
-//   //   title: "E-Commerce Website",
-//   //   subtitle: "A clean storefront built around the product.",
-//   //   image: ProjectFive,
-//   //   tags: ["React", "Tailwind", "Node.js", "MongoDB"],
-//   //   categories: ["Websites", "E-Commerce"],
-//   //   link: "https://newvilla4.mydesign.blog/",
-//   // },
-//   // {
-//   //   id: 6,
-//   //   title: "Landscapers",
-//   //   subtitle: "A polished website for a service business.",
-//   //   image: ProjectSix,
-//   //   tags: ["React", "Tailwind"],
-//   //   categories: ["Websites", "Landing Pages"],
-//   //   link: "https://landscapers.mydesign.blog/",
-//   // },
-// ];
-
- const projects = [
+const projects = [
   {
     id: 1,
     title: "Tour & Travel",
@@ -99,7 +33,6 @@ import "./Projects.css";
     title: "Creative Website",
     subtitle: "A modern digital experience.",
     image: "/projectImg/pro6.png",
-    video: "",
     mediaType: "image",
     device: "desktop",
     tags: ["React", "Responsive UI"],
@@ -133,7 +66,7 @@ import "./Projects.css";
     title: "Business Website",
     subtitle: "A polished online presence.",
     image: "/projectImg/pro4.png",
-   video: "/projectImg/digify.mp4",
+    video: "/projectImg/digify.mp4",
     mediaType: "video",
     device: "desktop",
     tags: ["React", "Responsive UI"],
@@ -150,6 +83,80 @@ const filters = [
   "E-Commerce",
 ];
 
+// Optimized video: load only when the card approaches the viewport.
+function ProjectVideo({ project }) {
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    // Fallback for browsers without IntersectionObserver.
+    if (!("IntersectionObserver" in window)) {
+      setShouldLoad(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: "200px 0px",
+      }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video || !shouldLoad) return;
+
+    const playVideo = () => {
+      video.play().catch(() => {
+        // Autoplay may be restricted by the browser.
+      });
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener("loadeddata", playVideo, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener("loadeddata", playVideo);
+    };
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="work-image work-video"
+      poster={project.image}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="none"
+      aria-label={`${project.title} website preview`}
+    >
+      {shouldLoad && (
+        <source src={project.video} type="video/mp4" />
+      )}
+    </video>
+  );
+}
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -164,9 +171,7 @@ const Projects = () => {
   return (
     <main className="work-page" id="projects">
       <section className="work-container">
-        {/* Page heading */}
         <header className="work-header">
-           
           <h1 className="work-title font-display">
             Showcase of Our
             <br />
@@ -178,15 +183,11 @@ const Projects = () => {
             designed to turn ideas into something meaningful.
           </p>
 
-          <div className="work-count font-body">
-            <span>SELECTED WORK</span>
-            <span>
-              {String(filteredProjects.length).padStart(2, "0")} PROJECTS
-            </span>
-          </div>
+          
+
+       
         </header>
 
-        {/* Projects grid */}
         <div className="work-grid">
           {filteredProjects.map((project, index) => (
             <article
@@ -195,46 +196,44 @@ const Projects = () => {
               style={{ "--card-index": index }}
             >
               <a
-               
+                href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="work-card-link"
                 aria-label={`Visit ${project.title} website`}
               >
-                
-<div
-  className={`work-image-wrap ${
-    project.device === "mobile" ? "is-mobile" : "is-desktop"
-  }`}
->
-  {project.mediaType === "video" ? (
-    <video
-      className="work-image work-video"
-      src={project.video}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-label={`${project.title} website scrolling preview`}
-    />
-  ) : (
-    <img
-      src={project.image}
-      alt={`${project.title} website preview`}
-      className="work-image"
-      loading={index < 2 ? "eager" : "lazy"}
-    />
-  )}
+                <div
+                  className={`work-image-wrap ${
+                    project.device === "mobile"
+                      ? "is-mobile"
+                      : "is-desktop"
+                  }`}
+                >
+                  {project.mediaType === "video" && project.video ? (
+                    <ProjectVideo project={project} />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} website preview`}
+                      className="work-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
 
-  <span className="work-image-number">
-    {String(project.id).padStart(2, "0")}
-  </span>
-</div>
+                  <span className="work-image-number">
+                    {String(project.id).padStart(2, "0")}
+                  </span>
 
+                  {/* <span className="work-card-arrow" aria-hidden="true">
+                    <FaArrowUpRightFromSquare />
+                  </span> */}
+                </div>
               </a>
 
-              {/* <div className="work-card-info">
+              {/* Uncomment if you want titles and tags below each card. */}
+              {/*
+              <div className="work-card-info">
                 <div className="work-card-copy">
                   <h2 className="font-display">{project.title}</h2>
                   <p className="font-body">{project.subtitle}</p>
@@ -245,28 +244,27 @@ const Projects = () => {
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
-              </div> */}
+              </div>
+              */}
             </article>
           ))}
         </div>
 
-        {/* Empty state */}
         {filteredProjects.length === 0 && (
           <div className="work-empty font-body">
             <h2>No projects in this category yet.</h2>
             <p>Explore all projects to see the complete collection.</p>
-            <button onClick={() => setActiveFilter("All")}>
+            <button
+              type="button"
+              onClick={() => setActiveFilter("All")}
+            >
               View all projects
             </button>
           </div>
         )}
 
-        {/* Bottom breathing room for floating filters */}
         <div className="work-bottom-space" />
       </section>
-
-      {/* Floating filter bar */}
-     
     </main>
   );
 };
