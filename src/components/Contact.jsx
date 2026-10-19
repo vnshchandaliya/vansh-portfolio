@@ -37,36 +37,49 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    if (isSending) return;
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    setIsSending(true);
-    setStatus("");
-    setStatusType("");
+  if (isSending) return;
 
-    try {
-      await emailjs.send(
-        "service_e58mybn",
-        "template_r0xbplg",
-        formData,
-        "LMAP_a4_nD0UFDuqV"
-      );
+  setIsSending(true);
+  setStatus("");
+  setStatusType("");
 
-      setStatus("Thanks for reaching out! I'll get back to you soon.");
-      setStatusType("success");
-      setFormData(initialForm);
-    } catch (error) {
-      console.error("EmailJS submission failed:", error);
-      setStatus(
-        "Your message could not be sent. Please try again or email me directly."
-      );
-      setStatusType("error");
-    } finally {
-      setIsSending(false);
-    }
-  };
+  try {
+    const response = await emailjs.send(
+      "service_hy5d8a3",
+      "template_r0xbplg",
+      {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || "Not provided",
+        service: formData.service,
+        message: formData.message,
+      },
+      "LMAP_a4_nD0UFDuqV"
+    );
+
+    console.log("EmailJS success:", response.status, response.text);
+
+    setStatus("Thanks for reaching out! I'll get back to you soon.");
+    setStatusType("success");
+    setFormData(initialForm);
+  } catch (error) {
+    console.error("EmailJS error details:", error);
+    console.error("Error status:", error?.status);
+    console.error("Error text:", error?.text);
+
+    setStatus(
+      error?.text || "Your message could not be sent. Please check the console."
+    );
+    setStatusType("error");
+  } finally {
+    setIsSending(false);
+  }
+};
+
 
   return (
     <section id="contact" className="contact-section">
@@ -107,7 +120,7 @@ const Contact = () => {
               <div className="contact-art-orbit contact-art-orbit-two" />
 
               <div className="contact-art-core">
-                <span>V</span>
+                  <img src="/circleLogo.png" alt="" />
               </div>
 
               <span className="contact-art-star contact-art-star-one">✳</span>

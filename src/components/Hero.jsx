@@ -110,7 +110,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="portfolio-hero relative flex min-h-screen flex-col overflow-hidden bg-white pt-28 text-black sm:pt-32"
+      className="portfolio-hero relative flex min-h-screen flex-col overflow-hidden  pt-28 text-black sm:pt-32"
     >
       {/* Subtle monochrome background */}
       <div className="hero-pattern pointer-events-none absolute inset-0" />
@@ -127,17 +127,17 @@ const Hero = () => {
           </span>
 
           <span className="hero-heading-line mt-2 font-display block">
-            <span className="  italic">
+            <span className="  italic text-[#3434ff]">
               Websites,
             </span>{" "}
-            <span className="  font-medium tracking-[-0.07em]">
+            <span className="  font-medium tracking-[-0.07em] text-[#3434ff]">
               Landing Pages
             </span>
           </span>
 
           <span className="hero-heading-line font-display mt-2 block">
             <span className="  italic">&</span>{" "}
-            <span className="  font-medium tracking-[-0.07em]">
+            <span className="  font-medium tracking-[-0.07em] ">
               Dashboards.
             </span>
           </span>

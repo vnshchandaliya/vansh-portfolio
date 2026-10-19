@@ -69,60 +69,77 @@ import "./Projects.css";
 //   // },
 // ];
 
-const projects = [
+ const projects = [
   {
     id: 1,
     title: "Tour & Travel",
     subtitle: "Travel experiences, thoughtfully designed.",
     image: "/projectImg/pro5.png",
+    video: "/projectImg/travel-preview.mp4",
+    mediaType: "video",
     device: "mobile",
     tags: ["React", "Tailwind", "Node.js"],
     categories: ["Websites", "Landing Pages"],
     link: "https://vcteam.in/",
   },
-  
   {
     id: 2,
-    title: "Mobile Responsive Website",
-    subtitle: "A responsive experience designed for mobile screens.",
+    title: "Responsive Website",
+    subtitle: "A responsive experience for every screen.",
     image: "/projectImg/pro1.png",
+    video: "/projectImg/landing-Video.mp4",
+    mediaType: "video",
     device: "desktop",
     tags: ["React", "Responsive UI"],
     categories: ["Websites"],
     link: "https://example.com/",
   },
-  
-   {
+  {
     id: 3,
-    title: "Mobile Responsive Website",
-    subtitle: "A responsive experience designed for mobile screens.",
-    image: "/projectImg/pro2.png",
+    title: "Creative Website",
+    subtitle: "A modern digital experience.",
+    image: "/projectImg/pro6.png",
+    video: "",
+    mediaType: "image",
     device: "desktop",
     tags: ["React", "Responsive UI"],
     categories: ["Websites"],
     link: "https://example.com/",
   },
-   {
+  {
     id: 4,
-    title: "Mobile Responsive Website",
-    subtitle: "A responsive experience designed for mobile screens.",
+    title: "Admin Dashboard",
+    subtitle: "A dashboard built for clarity.",
     image: "/projectImg/Dashboard1.png",
+    mediaType: "image",
     device: "desktop",
-    tags: ["React", "Responsive UI"],
-    categories: ["Websites"],
+    tags: ["React", "Dashboard"],
+    categories: ["Dashboards"],
     link: "https://example.com/",
   },
   {
     id: 5,
-    title: "Mobile Responsive Website",
-    subtitle: "A responsive experience designed for mobile screens.",
+    title: "Business Website",
+    subtitle: "A polished online presence.",
     image: "/projectImg/pro4.png",
+    mediaType: "image",
     device: "desktop",
     tags: ["React", "Responsive UI"],
     categories: ["Websites"],
     link: "https://example.com/",
   },
-  
+  {
+    id: 6,
+    title: "Business Website",
+    subtitle: "A polished online presence.",
+    image: "/projectImg/pro4.png",
+   video: "/projectImg/digify.mp4",
+    mediaType: "video",
+    device: "desktop",
+    tags: ["React", "Responsive UI"],
+    categories: ["Websites"],
+    link: "https://example.com/",
+  },
 ];
 
 const filters = [
@@ -185,15 +202,30 @@ const Projects = () => {
                 aria-label={`Visit ${project.title} website`}
               >
                 
-<div className={`work-image-wrap ${project.device === "mobile" ? "is-mobile" : "is-desktop"}`}>
-   
-
-  <img
-    src={project.image}
-    alt={`${project.title} ${project.device} website preview`}
-    className="work-image"
-    loading={index < 2 ? "eager" : "lazy"}
-  />
+<div
+  className={`work-image-wrap ${
+    project.device === "mobile" ? "is-mobile" : "is-desktop"
+  }`}
+>
+  {project.mediaType === "video" ? (
+    <video
+      className="work-image work-video"
+      src={project.video}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={`${project.title} website scrolling preview`}
+    />
+  ) : (
+    <img
+      src={project.image}
+      alt={`${project.title} website preview`}
+      className="work-image"
+      loading={index < 2 ? "eager" : "lazy"}
+    />
+  )}
 
   <span className="work-image-number">
     {String(project.id).padStart(2, "0")}
