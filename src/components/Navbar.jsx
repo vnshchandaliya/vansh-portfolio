@@ -71,7 +71,7 @@ const Navbar = () => {
                     <img
                         src="/Logo.png"
                         alt="VanCode Logo"
-                        className="w-28 h-auto object-contain sm:w-36 md:w-44 lg:w-20 z-9999"
+                        className="w-28 h-auto object-contain sm:w-36 md:w-44 lg:w-30 z-9999"
                     />
                 </Link>
 

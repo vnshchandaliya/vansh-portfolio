@@ -9,19 +9,17 @@
   overflow: clip;
   background-color: #fafafa;
   color: #101014;
-
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 5px,
-      rgba(0, 0, 0, 0.018) 6px,
-      transparent 7px
-    );
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 5px,
+    rgba(0, 0, 0, 0.018) 6px,
+    transparent 7px
+  );
 }
 
 .work-container {
-  width: min(100% - 48px, 1240px);
+  width: min(calc(100% - 48px), 1240px);
   margin: 0 auto;
 }
 
@@ -87,6 +85,7 @@
   padding-bottom: 13px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   color: #858585;
+  font-family: "Inter Tight", sans-serif;
   font-size: 10px;
   letter-spacing: 0.1em;
 }
@@ -108,74 +107,144 @@
   animation-delay: calc(var(--card-index, 0) * 70ms);
 }
 
-/* Alternate image heights for editorial layout */
-.work-card:nth-child(4n + 1) .work-image-wrap {
-  aspect-ratio: 1.05 / 1;
-}
-
-.work-card:nth-child(4n + 2) .work-image-wrap {
-  aspect-ratio: 0.82 / 1;
-}
-
-.work-card:nth-child(4n + 3) .work-image-wrap {
-  aspect-ratio: 0.94 / 1;
-}
-
-.work-card:nth-child(4n + 4) .work-image-wrap {
-  aspect-ratio: 1.12 / 1;
-}
-
 .work-card-link {
   display: block;
   color: inherit;
   text-decoration: none;
 }
 
-.work-image-wrap {
+/* =========================================
+   IMAGE FRAME - COMMON
+========================================= */
+
+.work-card .work-image-wrap {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  border-radius: 28px;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
   padding: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 28px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow:
     0 0 0 5px rgba(0, 0, 0, 0.035),
     0 15px 40px rgba(0, 0, 0, 0.045);
-
   transition:
     transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
     box-shadow 400ms ease;
 }
 
 .work-card-link:hover .work-image-wrap {
-  transform: translateY(-5px);
   box-shadow:
     0 0 0 5px rgba(0, 0, 0, 0.045),
     0 24px 55px rgba(0, 0, 0, 0.11);
 }
 
-.work-image {
+/* =========================================
+   DESKTOP SCREENSHOTS
+========================================= */
+
+.work-card .work-image-wrap.is-desktop {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.work-card .work-image-wrap.is-desktop .work-image {
   display: block;
   width: 100%;
   height: 100%;
+  max-width: 100%;
   min-height: 0;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top center;
-  border-radius: 19px;
+  border-radius: 18px;
   background: #ededed;
-
-  transition:
-    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    filter 400ms ease;
 }
 
-.work-card-link:hover .work-image {
-  transform: scale(1.025);
+/* =========================================
+   MOBILE SCREENSHOTS
+   Portrait card with visible side borders
+========================================= */
+
+.work-card .work-image-wrap.is-mobile {
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+  padding: 9px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 27px;
+  background: linear-gradient(145deg, #f8f8f8, #eaeaea);
+  box-shadow:
+    0 0 0 5px rgba(0, 0, 0, 0.035),
+    0 15px 40px rgba(0, 0, 0, 0.07);
 }
 
-/* External link indicator */
+.work-card .work-image-wrap.is-mobile .work-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: top center;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: none;
+}
+
+/* =========================================
+   DEVICE LABEL
+========================================= */
+
+.device-label {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  left: 18px;
+  max-width: calc(100% - 36px);
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #222;
+  font-family: "Inter Tight", sans-serif;
+  font-size: 10px;
+  line-height: 1.2;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+/* =========================================
+   IMAGE NUMBER
+========================================= */
+
+.work-image-number {
+  position: absolute;
+  z-index: 2;
+  bottom: 20px;
+  left: 20px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.84);
+  color: #222;
+  font-family: "Inter Tight", sans-serif;
+  font-size: 10px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+/* =========================================
+   EXTERNAL LINK INDICATOR
+========================================= */
+
 .work-open-icon {
   position: absolute;
   top: 21px;
@@ -193,7 +262,6 @@
   transform: translateY(5px);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-
   transition:
     opacity 250ms ease,
     transform 250ms ease;
@@ -203,21 +271,6 @@
 .work-card-link:focus-visible .work-open-icon {
   opacity: 1;
   transform: translateY(0);
-}
-
-.work-image-number {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  padding: 7px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.82);
-  color: #222;
-  font-family: "Inter Tight", sans-serif;
-  font-size: 10px;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
 }
 
 /* =========================================
@@ -273,11 +326,15 @@
   white-space: nowrap;
 }
 
-/* Empty filter state */
+/* =========================================
+   EMPTY STATE
+========================================= */
+
 .work-empty {
   padding: 70px 15px;
-  text-align: center;
   color: #777;
+  text-align: center;
+  font-family: "Inter Tight", sans-serif;
 }
 
 .work-empty h2 {
@@ -295,9 +352,18 @@
   border-radius: 12px;
   background: #111;
   color: white;
+  cursor: pointer;
+  transition: background 250ms ease;
 }
 
-/* Space before bottom floating filter */
+.work-empty button:hover {
+  background: #3434ff;
+}
+
+/* =========================================
+   BOTTOM SPACE
+========================================= */
+
 .work-bottom-space {
   height: 140px;
 }
@@ -312,10 +378,8 @@
   right: 16px;
   bottom: max(22px, env(safe-area-inset-bottom));
   left: 16px;
-
   display: flex;
   justify-content: center;
-
   pointer-events: none;
 }
 
@@ -324,21 +388,16 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-
   max-width: 100%;
   padding: 6px;
-
   border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 20px;
   background: rgba(244, 244, 244, 0.79);
-
   -webkit-backdrop-filter: blur(25px) saturate(150%);
   backdrop-filter: blur(25px) saturate(150%);
-
   box-shadow:
     0 12px 35px rgba(0, 0, 0, 0.17),
     0 2px 6px rgba(0, 0, 0, 0.06);
-
   pointer-events: auto;
 }
 
@@ -348,20 +407,16 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
-
   min-height: 47px;
   padding: 0 17px;
-
   border: 0;
   border-radius: 14px;
   background: transparent;
   color: #666;
-
   font-family: "Inter Tight", sans-serif;
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
-
   transition:
     background 250ms ease,
     color 250ms ease,
@@ -383,8 +438,12 @@
   outline-offset: 3px;
 }
 
+.work-filter svg {
+  flex-shrink: 0;
+}
+
 /* =========================================
-   ANIMATIONS
+   ANIMATION
 ========================================= */
 
 @keyframes work-card-enter {
@@ -405,7 +464,7 @@
 
 @media (max-width: 900px) {
   .work-container {
-    width: min(100% - 36px, 700px);
+    width: min(calc(100% - 36px), 700px);
   }
 
   .work-header {
@@ -416,13 +475,20 @@
     gap: 32px 20px;
   }
 
-  .work-image-wrap {
+  .work-card .work-image-wrap {
     padding: 7px;
     border-radius: 22px;
   }
 
-  .work-image {
-    border-radius: 15px;
+  .work-card .work-image-wrap.is-desktop {
+    aspect-ratio: 4 / 3;
+  }
+
+  .work-card .work-image-wrap.is-mobile {
+    width: min(100%, 340px);
+    aspect-ratio: 9 / 16;
+    padding: 8px;
+    border-radius: 24px;
   }
 
   .work-card-info {
@@ -480,17 +546,42 @@
     gap: 32px;
   }
 
-  .work-card:nth-child(n) .work-image-wrap {
-    aspect-ratio: 0.95 / 1;
-  }
-
-  .work-image-wrap {
+  /* Desktop screenshots remain wide */
+  .work-card .work-image-wrap.is-desktop {
+    width: 100%;
+    aspect-ratio: 4 / 3;
     padding: 7px;
     border-radius: 23px;
   }
 
-  .work-image {
-    border-radius: 16px;
+  /* Mobile screenshots get a portrait outer frame */
+  .work-card .work-image-wrap.is-mobile {
+    width: min(100%, 320px);
+    aspect-ratio: 9 / 16;
+    margin-inline: auto;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    background: linear-gradient(145deg, #f8f8f8, #eaeaea);
+    box-shadow:
+      0 0 0 4px rgba(0, 0, 0, 0.035),
+      0 12px 32px rgba(0, 0, 0, 0.07);
+  }
+
+  .work-card .work-image-wrap.is-mobile .work-image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .device-label {
+    top: 14px;
+    left: 14px;
+    padding: 6px 9px;
+    font-size: 9px;
   }
 
   .work-card-info {
@@ -516,7 +607,7 @@
     height: 115px;
   }
 
-  /* Scrollable filter bar on narrow screens */
+  /* Scrollable floating filter bar */
   .work-filter-shell {
     right: 10px;
     bottom: max(14px, env(safe-area-inset-bottom));
@@ -545,13 +636,9 @@
     font-size: 12px;
   }
 
-  .work-filter svg {
-    flex-shrink: 0;
-  }
-
   .work-open-icon {
-    top: 16px;
-    right: 16px;
+    top: 14px;
+    right: 14px;
     width: 36px;
     height: 36px;
     opacity: 1;
@@ -559,15 +646,26 @@
   }
 
   .work-image-number {
-    bottom: 15px;
-    left: 15px;
+    bottom: 14px;
+    left: 14px;
   }
 }
 
-/* Very small screens */
+/* =========================================
+   VERY SMALL SCREENS
+========================================= */
+
 @media (max-width: 360px) {
+  .work-container {
+    width: calc(100% - 24px);
+  }
+
   .work-title {
     font-size: 12.5vw;
+  }
+
+  .work-card .work-image-wrap.is-mobile {
+    width: min(100%, 290px);
   }
 
   .work-filter {
@@ -576,7 +674,10 @@
   }
 }
 
-/* Accessibility */
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .work-card {
     animation: none;

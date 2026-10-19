@@ -3,54 +3,54 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
-import ProjectOne from "../assets/projectImg/project1.png";
-import ProjectTwo from "../assets/projectImg/project2.png";
-import ProjectThree from "../assets/projectImg/project3.png";
-import ProjectFour from "../assets/projectImg/project4.png";
-import ProjectFive from "../assets/projectImg/project5.png";
-import ProjectSix from "../assets/projectImg/project6.png";
+// import ProjectOne from "../assets/projectImg/project1.png";
+// import ProjectTwo from "../assets/projectImg/project2.png";
+// import ProjectThree from "../assets/projectImg/project3.png";
+// import ProjectFour from "../assets/projectImg/project4.png";
+// import ProjectFive from "../assets/projectImg/project5.png";
+// import ProjectSix from "../assets/projectImg/project6.png";
 
 const projects = [
   {
     id: 1,
-    title: "Tour & Travel",
-    image: ProjectOne,
-    category: "Website Design",
+    title: "Landing Page",
+    image:" /projectImg/pro1.png",
+    category: "Landing Page",
     link: "https://vcteam.in/",
   },
   {
     id: 2,
-    title: "Web Design Company",
-    image: ProjectTwo,
-    category: "Business Website",
+    title: "Property Rentals",
+    image:" /projectImg/pro2.png",
+    category: "Rentals Website",
     link: "https://digifyamerica.com/",
   },
   {
     id: 3,
     title: "Property Rentals",
-    image: ProjectThree,
+    image:" /projectImg/pro3.png",
     category: "Rental Website",
     link: "https://www.coastaldreamrentals.com/",
   },
   {
     id: 4,
-    title: "Foundation",
-    image: ProjectFour,
-    category: "Nonprofit Website",
+    title: "Property Rentals",
+    image:" /projectImg/pro4.png",
+    category: "Property Website",
     link: "https://jyotfoundation.in/",
   },
   {
     id: 5,
-    title: "E-Commerce Website",
-    image: ProjectFive,
-    category: "Landing Page",
+    title: "Travel Website",
+    image:"/projectImg/project1.png",
+    category: "Tour & Travel",
     link: "https://newvilla4.mydesign.blog/",
   },
   {
     id: 6,
-    title: "Landscapers",
-    image: ProjectSix,
-    category: "Business Website",
+    title: "Dashboard ",
+  image: "/projectImg/Dashboard1.png",
+    category: "Admin Dashboard",
     link: "https://landscapers.mydesign.blog/",
   },
 ];

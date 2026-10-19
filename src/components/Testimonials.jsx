@@ -4,69 +4,125 @@ import {
   FaArrowUpRightFromSquare,
   FaInfinity,
 } from "react-icons/fa6";
-import ProjectOne from "../assets/projectImg/project1.png";
-import ProjectTwo from "../assets/projectImg/project2.png";
-import ProjectThree from "../assets/projectImg/project3.png";
-import ProjectFour from "../assets/projectImg/project4.png";
-import ProjectFive from "../assets/projectImg/project5.png";
-import ProjectSix from "../assets/projectImg/project6.png";
+// import ProjectOne from "../assets/projectImg/project1.png";
+// import ProjectTwo from "../assets/projectImg/project2.png";
+// import ProjectThree from "../assets/projectImg/project3.png";
+// import ProjectFour from "../assets/projectImg/project4.png";
+// import ProjectFive from "../assets/projectImg/project5.png";
+// import ProjectSix from "../assets/projectImg/project6.png";
 import "./Projects.css";
+
+// const projects = [
+//   {
+//     id: 1,
+//     title: "Tour & Travel",
+//     subtitle: "Travel experiences, thoughtfully designed.",
+//     image: "/projectImg/pro5.png",
+//     tags: ["React", "Tailwind", "Node.js"],
+//     categories: ["Websites", "Landing Pages"],
+//     link: "https://vcteam.in/",
+//   },
+//   // {
+//   //   id: 2,
+//   //   title: "Web Design Company",
+//   //   subtitle: "A modern digital presence for a creative agency.",
+//   //   image: ProjectTwo,
+//   //   tags: ["React", "Tailwind", "MongoDB"],
+//   //   categories: ["Websites", "Landing Pages"],
+//   //   link: "https://digifyamerica.com/",
+//   // },
+//   // {
+//   //   id: 3,
+//   //   title: "Property Rentals",
+//   //   subtitle: "A seamless experience for discovering stays.",
+//   //   image: ProjectThree,
+//   //   tags: ["HTML", "CSS", "JavaScript", "PHP"],
+//   //   categories: ["Websites", "Landing Pages"],
+//   //   link: "https://www.coastaldreamrentals.com/",
+//   // },
+//   // {
+//   //   id: 4,
+//   //   title: "Jyot Foundation",
+//   //   subtitle: "A digital platform for a meaningful mission.",
+//   //   image: ProjectFour,
+//   //   tags: ["WordPress"],
+//   //   categories: ["Websites"],
+//   //   link: "https://jyotfoundation.in/",
+//   // },
+//   // {
+//   //   id: 5,
+//   //   title: "E-Commerce Website",
+//   //   subtitle: "A clean storefront built around the product.",
+//   //   image: ProjectFive,
+//   //   tags: ["React", "Tailwind", "Node.js", "MongoDB"],
+//   //   categories: ["Websites", "E-Commerce"],
+//   //   link: "https://newvilla4.mydesign.blog/",
+//   // },
+//   // {
+//   //   id: 6,
+//   //   title: "Landscapers",
+//   //   subtitle: "A polished website for a service business.",
+//   //   image: ProjectSix,
+//   //   tags: ["React", "Tailwind"],
+//   //   categories: ["Websites", "Landing Pages"],
+//   //   link: "https://landscapers.mydesign.blog/",
+//   // },
+// ];
 
 const projects = [
   {
     id: 1,
     title: "Tour & Travel",
     subtitle: "Travel experiences, thoughtfully designed.",
-    image: ProjectOne,
+    image: "/projectImg/pro5.png",
+    device: "mobile",
     tags: ["React", "Tailwind", "Node.js"],
     categories: ["Websites", "Landing Pages"],
     link: "https://vcteam.in/",
   },
+  
   {
     id: 2,
-    title: "Web Design Company",
-    subtitle: "A modern digital presence for a creative agency.",
-    image: ProjectTwo,
-    tags: ["React", "Tailwind", "MongoDB"],
-    categories: ["Websites", "Landing Pages"],
-    link: "https://digifyamerica.com/",
-  },
-  {
-    id: 3,
-    title: "Property Rentals",
-    subtitle: "A seamless experience for discovering stays.",
-    image: ProjectThree,
-    tags: ["HTML", "CSS", "JavaScript", "PHP"],
-    categories: ["Websites", "Landing Pages"],
-    link: "https://www.coastaldreamrentals.com/",
-  },
-  {
-    id: 4,
-    title: "Jyot Foundation",
-    subtitle: "A digital platform for a meaningful mission.",
-    image: ProjectFour,
-    tags: ["WordPress"],
+    title: "Mobile Responsive Website",
+    subtitle: "A responsive experience designed for mobile screens.",
+    image: "/projectImg/pro1.png",
+    device: "desktop",
+    tags: ["React", "Responsive UI"],
     categories: ["Websites"],
-    link: "https://jyotfoundation.in/",
+    link: "https://example.com/",
+  },
+  
+   {
+    id: 3,
+    title: "Mobile Responsive Website",
+    subtitle: "A responsive experience designed for mobile screens.",
+    image: "/projectImg/pro2.png",
+    device: "desktop",
+    tags: ["React", "Responsive UI"],
+    categories: ["Websites"],
+    link: "https://example.com/",
+  },
+   {
+    id: 4,
+    title: "Mobile Responsive Website",
+    subtitle: "A responsive experience designed for mobile screens.",
+    image: "/projectImg/Dashboard1.png",
+    device: "desktop",
+    tags: ["React", "Responsive UI"],
+    categories: ["Websites"],
+    link: "https://example.com/",
   },
   {
     id: 5,
-    title: "E-Commerce Website",
-    subtitle: "A clean storefront built around the product.",
-    image: ProjectFive,
-    tags: ["React", "Tailwind", "Node.js", "MongoDB"],
-    categories: ["Websites", "E-Commerce"],
-    link: "https://newvilla4.mydesign.blog/",
+    title: "Mobile Responsive Website",
+    subtitle: "A responsive experience designed for mobile screens.",
+    image: "/projectImg/pro4.png",
+    device: "desktop",
+    tags: ["React", "Responsive UI"],
+    categories: ["Websites"],
+    link: "https://example.com/",
   },
-  {
-    id: 6,
-    title: "Landscapers",
-    subtitle: "A polished website for a service business.",
-    image: ProjectSix,
-    tags: ["React", "Tailwind"],
-    categories: ["Websites", "Landing Pages"],
-    link: "https://landscapers.mydesign.blog/",
-  },
+  
 ];
 
 const filters = [
@@ -122,31 +178,31 @@ const Projects = () => {
               style={{ "--card-index": index }}
             >
               <a
-                href={project.link}
+               
                 target="_blank"
                 rel="noopener noreferrer"
                 className="work-card-link"
                 aria-label={`Visit ${project.title} website`}
               >
-                <div className="work-image-wrap">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} website preview`}
-                    className="work-image"
-                    loading={index < 2 ? "eager" : "lazy"}
-                  />
+                
+<div className={`work-image-wrap ${project.device === "mobile" ? "is-mobile" : "is-desktop"}`}>
+   
 
-                  <span className="work-open-icon">
-                    <FaArrowUpRightFromSquare />
-                  </span>
+  <img
+    src={project.image}
+    alt={`${project.title} ${project.device} website preview`}
+    className="work-image"
+    loading={index < 2 ? "eager" : "lazy"}
+  />
 
-                  <span className="work-image-number">
-                    {String(project.id).padStart(2, "0")}
-                  </span>
-                </div>
+  <span className="work-image-number">
+    {String(project.id).padStart(2, "0")}
+  </span>
+</div>
+
               </a>
 
-              <div className="work-card-info">
+              {/* <div className="work-card-info">
                 <div className="work-card-copy">
                   <h2 className="font-display">{project.title}</h2>
                   <p className="font-body">{project.subtitle}</p>
@@ -157,7 +213,7 @@ const Projects = () => {
                     <span key={tag}>{tag}</span>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </article>
           ))}
         </div>
